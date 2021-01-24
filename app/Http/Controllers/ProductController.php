@@ -18,6 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         //
+        $tes = "212";
         $data = Product::all();
        if(count($data) > 0)
        { //mengecek apakah data kosong atau tidak
