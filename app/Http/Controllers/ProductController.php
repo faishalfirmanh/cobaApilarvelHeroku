@@ -19,7 +19,6 @@ class ProductController extends Controller
     {
         //
         $data = Product::all();
-        $coba =12;
        if(count($data) > 0)
        { //mengecek apakah data kosong atau tidak
            $res['message'] = "Berhasil!";
