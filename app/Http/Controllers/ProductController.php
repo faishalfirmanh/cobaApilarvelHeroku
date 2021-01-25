@@ -51,7 +51,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        //
 
+
+      if ($request->file('image') == null)
+      {
+          return "gambar tidak boleh kosong";
+      }else
+      {
         $request->validate([
            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
        ]);
@@ -66,13 +73,13 @@ class ProductController extends Controller
            $res['message'] = "Berhasil!";
            $res['value'] = "$data";
            return response($res);
-          return response()->json('sukses add',200);
+             return response()->json('sukses add',200);
          }
          else
          {
              return "failed save";
          }
-
+     }
 
 
 
