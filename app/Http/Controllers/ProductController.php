@@ -52,42 +52,36 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+
+
+      if ($request->file('image') == null)
+      {
+          return "gambar tidak boleh kosong";
+      }else
+      {
         $request->validate([
            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
        ]);
-
-      $filename = time() . '.'.$request->image->extension();
-      $name = $request->input('name');
-      $image = $request->file('image')->move(public_path('images'), $filename);
-      $gmbr = $request->file('image');
-      if ($gmbr->isValid()) {
-        echo " ada gambar";
-      }else {
-        echo "tida ada gmbr";
+       $filename = time() . '.'.$request->image->extension();
+       $name = $request->input('name');
+       $image = $request->file('image')->move(public_path('images'), $filename);
+       $gmbr = $request->file('image');
+       $data = new Product();
+         $data->name = $name;
+         $data->image = $image;
+         if($data->save())
+         {
+           $res['message'] = "Berhasil!";
+           $res['value'] = "$data";
+           return response($res);
+         }
+         else
+         {
+             return "failed save";
+         }
       }
-      echo "tess";
-      echo "$gmbr";
-      // $data = new Product();
-      // if ($image == null || $name == null)
-      // {
-      //   return "name & gambar tidak ada yang boleh kosong";
-      // }
-      // else
-      // {
-      //   $data->name = $name;
-      //   $data->image = $image;
-      //
-      //   if($data->save())
-      //   {
-      //     $res['message'] = "Berhasil!";
-      //     $res['value'] = "$data";
-      //     return response($res);
-      //   }
-      //   else
-      //   {
-      //       return "failed save";
-      //   }
-      // }
+
+
 
     }
 
