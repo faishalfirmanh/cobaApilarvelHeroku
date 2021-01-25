@@ -51,21 +51,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
 
-
-      // if ($request->file('image') == null)
-      // {
-      //     return "gambar tidak boleh kosong";
-      // }else
-      // {
         $request->validate([
            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
        ]);
        $filename = time() . '.'.$request->image->extension();
        $name = $request->input('name');
        $image = $request->file('image')->move(public_path('images'), $filename);
-       $gmbr = $request->file('image');
        $data = new Product();
          $data->name = $name;
          $data->image = $image;
@@ -74,12 +66,13 @@ class ProductController extends Controller
            $res['message'] = "Berhasil!";
            $res['value'] = "$data";
            return response($res);
+          return response()->json('sukses add',200);
          }
          else
          {
              return "failed save";
          }
-    //  }
+
 
 
 
