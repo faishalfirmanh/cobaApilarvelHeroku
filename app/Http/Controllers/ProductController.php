@@ -54,11 +54,11 @@ class ProductController extends Controller
         //
 
 
-      if ($request->file('image') == null)
-      {
-          return "gambar tidak boleh kosong";
-      }else
-      {
+      // if ($request->file('image') == null)
+      // {
+      //     return "gambar tidak boleh kosong";
+      // }else
+      // {
         $request->validate([
            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
        ]);
@@ -79,7 +79,7 @@ class ProductController extends Controller
          {
              return "failed save";
          }
-      }
+    //  }
 
 
 
