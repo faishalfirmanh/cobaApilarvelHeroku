@@ -59,12 +59,14 @@ class ProductController extends Controller
       $filename = time() . '.'.$request->image->extension();
       $name = $request->input('name');
       $image = $request->file('image')->move(public_path('images'), $filename);
-
-      if ($request->file('image')->isValid()) {
+      $gmbr = $request->file('image');
+      if ($gmbr->isValid()) {
         echo " ada gambar";
       }else {
         echo "tida ada gmbr";
       }
+      echo "tess";
+      echo "$gmbr";
       // $data = new Product();
       // if ($image == null || $name == null)
       // {
