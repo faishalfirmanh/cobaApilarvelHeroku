@@ -59,7 +59,12 @@ class ProductController extends Controller
       $filename = time() . '.'.$request->image->extension();
       $name = $request->input('name');
       $image = $request->file('image')->move(public_path('images'), $filename);
-      echo "$image";
+
+      if ($request->hasFile('image')) {
+        echo "ada gambar";
+      }else {
+        echo "tidak ada gmbr";
+      }
       // $data = new Product();
       // if ($image == null || $name == null)
       // {
