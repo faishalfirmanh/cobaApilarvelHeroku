@@ -59,27 +59,28 @@ class ProductController extends Controller
       $filename = time() . '.'.$request->image->extension();
       $name = $request->input('name');
       $image = $request->file('image')->move(public_path('images'), $filename);
-      $data = new Product();
-      if ($image == null || $name == null)
-      {
-        return "name & gambar tidak ada yang boleh kosong";
-      }
-      else
-      {
-        $data->name = $name;
-        $data->image = $image;
-
-        if($data->save())
-        {
-          $res['message'] = "Berhasil!";
-          $res['value'] = "$data";
-          return response($res);
-        }
-        else
-        {
-            return "failed save";
-        }
-      }
+      echo "$image";
+      // $data = new Product();
+      // if ($image == null || $name == null)
+      // {
+      //   return "name & gambar tidak ada yang boleh kosong";
+      // }
+      // else
+      // {
+      //   $data->name = $name;
+      //   $data->image = $image;
+      //
+      //   if($data->save())
+      //   {
+      //     $res['message'] = "Berhasil!";
+      //     $res['value'] = "$data";
+      //     return response($res);
+      //   }
+      //   else
+      //   {
+      //       return "failed save";
+      //   }
+      // }
 
     }
 
