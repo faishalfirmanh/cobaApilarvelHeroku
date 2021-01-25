@@ -116,14 +116,23 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $request->validate([
-           'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-       ]);
+        $nnn = $request->all();
+       if (Product::where('id',$id)->exists())
+       {
+         $prod = Product::find($id);
+         $prod->name =  'hallo edit Statis';
+         $prod->image = "imagetes.jpg";
+         $prod->save();
+         return response()->json([
+            "message" => "records updated successfully staticc"
+        ], 200);
 
-      $filename = time() . '.'.$request->image->extension();
-      $name = $request->input('name');
-      $image = $request->file('image')->move(public_path('images'), $filename);
+       }else
+       {
+         return "maaf id tidak ada";
+       }
+
+
 
 
     }
