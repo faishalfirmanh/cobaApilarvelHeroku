@@ -60,10 +60,10 @@ class ProductController extends Controller
       $name = $request->input('name');
       $image = $request->file('image')->move(public_path('images'), $filename);
 
-      if ($request->hasFile('image')) {
-        echo "ada gambar";
+      if (!$request->hasFile('image')) {
+        echo "tidak ada gambar";
       }else {
-        echo "tidak ada gmbr";
+        echo "ada gmbr";
       }
       // $data = new Product();
       // if ($image == null || $name == null)
