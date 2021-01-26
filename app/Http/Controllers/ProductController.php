@@ -65,7 +65,7 @@ class ProductController extends Controller
        $filename = time() . '.'.$request->image->extension();
        $name = $request->input('name');
        $image = $request->file('image')->move(public_path('images'), $filename);
-       dd($name);
+
        $data = new Product();
          $data->name = $name;
          $data->image = $image;
@@ -129,7 +129,6 @@ class ProductController extends Controller
          $prod = Product::find($id);
          $prod->name =  'hallo edit Statis';
          $prod->image = "imagetes.jpg";
-
          dd('ada');
 
         // $prod->save();
@@ -161,7 +160,11 @@ class ProductController extends Controller
       $imgNow = $prod->image; //ambil gmbar yang lama full url
       $nameImg = str_replace('C:\laragon\www\cobaLaravellatihan\public\images\\','',$imgNow);
       $image_path = 'C:/laragon/www/cobaLaravellatihan/public/images/'.$nameImg;
-      File::delete($image_path);
+      if(File::exists($image_path))
+      {
+        File::delete($image_path);
+      }
+      //File::delete($image_path);
 
       $prod->delete();
       return 'Sukses dihapus';
