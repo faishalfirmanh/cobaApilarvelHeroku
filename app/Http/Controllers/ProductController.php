@@ -65,7 +65,7 @@ class ProductController extends Controller
 
        $data = new Product();
          $data->name = $name;
-         $data->image = public_path('images');
+         $data->image = url('images') . '/' . $filename;
          if($data->save())
          {
            $res['message'] = "Berhasil!";
