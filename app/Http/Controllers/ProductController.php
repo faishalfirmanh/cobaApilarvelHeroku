@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Validator;
 use Illuminate\Support\Facades\Http;
-
+use File;
 use App\Models\Product;
 class ProductController extends Controller
 {
@@ -53,7 +53,7 @@ class ProductController extends Controller
     {
         //
 
-
+    //
       if ($request->file('image') == null)
       {
           return "gambar tidak boleh kosong";
@@ -65,6 +65,7 @@ class ProductController extends Controller
        $filename = time() . '.'.$request->image->extension();
        $name = $request->input('name');
        $image = $request->file('image')->move(public_path('images'), $filename);
+       dd($name);
        $data = new Product();
          $data->name = $name;
          $data->image = $image;
@@ -116,23 +117,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+         // $prod->name =  'hallo edit Statis';
+         // print_r($prod->name);
         $nnn = $request->all();
+        $name2 = $request->input('name');
+
+        dd($request->input('name'));
        if (Product::where('id',$id)->exists())
        {
          $prod = Product::find($id);
          $prod->name =  'hallo edit Statis';
          $prod->image = "imagetes.jpg";
-         $prod->save();
-         return response()->json([
-            "message" => "records updated successfully staticc"
-        ], 200);
+
+         dd('ada');
+
+        // $prod->save();
+        //  return response()->json([
+        //     "message" => "records updated successfully staticc"
+        // ], 200);
 
        }else
        {
          return "maaf id tidak ada";
        }
-
-
 
 
     }
@@ -149,7 +157,49 @@ class ProductController extends Controller
       if (is_null($prod)) {
         return response()->json('Data tidak ditemukan',404);
       }
+
+      $imgNow = $prod->image; //ambil gmbar yang lama full url
+      $nameImg = str_replace('C:\laragon\www\cobaLaravellatihan\public\images\\','',$imgNow);
+      $image_path = 'C:/laragon/www/cobaLaravellatihan/public/images/'.$nameImg;
+      File::delete($image_path);
+
       $prod->delete();
       return 'Sukses dihapus';
+    }
+
+    public function updateNew(Request $request, $id)
+    {
+      if (Product::where('id',$id)->exists())
+      {
+        $name = $request->input('name');
+        $prod = Product::find($id);
+        $request->validate([
+           'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+       ]);
+
+        $imgNow = $prod->image; //ambil gmbar yang lama full url
+        $nameImg = str_replace('C:\laragon\www\cobaLaravellatihan\public\images\\','',$imgNow);
+        $image_path = 'C:/laragon/www/cobaLaravellatihan/public/images/'.$nameImg;
+        if(File::exists($image_path))
+        {
+          File::delete($image_path);
+        }else
+        {
+          print_r('tidak ada file gambar');
+        }
+       $filename = time() . '.'.$request->image->extension();
+       $newImgInput = $request->file('image')->move(public_path('images'), $filename);
+       $prod->name =  $name;
+       $prod->image = $newImgInput;
+        $prod->save();
+          return response()->json([
+             "message" => "records updated successfully staticc"
+         ], 200);
+
+      }else
+      {
+        return "maaf id tidak ada";
+      }
+
     }
 }
