@@ -54,16 +54,13 @@ class ProductController extends Controller
         //
 
     //
-      if ($request->file('image') == null)
-      {
-          return "gambar tidak boleh kosong";
-      }else
+     $name = $request->input('name');
+    if ($request->hasFile('image') && $name !== null)
       {
         $request->validate([
            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
        ]);
        $filename = time() . '.'.$request->image->extension();
-       $name = $request->input('name');
        $image = $request->file('image')->move(public_path('images'), $filename);
 
        $data = new Product();
@@ -80,6 +77,13 @@ class ProductController extends Controller
          {
              return "failed save";
          }
+      }
+      else
+     {
+       return response()->json([
+          "message" => "failed save",
+          "validasi" =>"name & image is null"
+      ]);
      }
 
 
@@ -176,9 +180,6 @@ class ProductController extends Controller
       {
         $name = $request->input('name');
         $prod = Product::find($id);
-        $request->validate([
-           'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-       ]);
 
         $imgNow = $prod->image; //ambil gmbar yang lama full url
         $nameImg = str_replace('C:\laragon\www\cobaLaravellatihan\public\images\\','',$imgNow);
@@ -188,18 +189,34 @@ class ProductController extends Controller
           File::delete($image_path);
         }else
         {
-          print_r('tidak ada file gambar');
+          // print_r('tidak ada file gambar');
+          // echo "<br>";
         }
-       $filename = time() . '.'.$request->image->extension();
-       $newImgInput = $request->file('image')->move(public_path('images'), $filename);
-       $prod->name =  $name;
-       $prod->image = $newImgInput;
-        $prod->save();
-          return response()->json([
-             "message" => "records updated successfully staticc"
-         ], 200);
 
-      }else
+        if ($request->hasFile('image') && $name !== null)
+        {
+          $request->validate([
+              'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          ]);
+          $filename = time() . '.'.$request->image->extension();
+          $newImgInput = $request->file('image')->move(public_path('images'), $filename);
+          $prod->name =  $name;
+          $prod->image = $newImgInput;
+           $prod->save();
+             return response()->json([
+                "message" => "succces save",
+            ], 200);
+
+      	}else
+        {
+          return response()->json([
+             "message" => "failed save",
+             "validasi" =>"name & image is null"
+         ], 200);
+        }
+
+      }
+      else
       {
         return "maaf id tidak ada";
       }
