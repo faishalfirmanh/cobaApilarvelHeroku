@@ -68,8 +68,8 @@ class ProductController extends Controller
          $data->image = url('images') . '/' . $filename;
          if($data->save())
          {
-           $res['message'] = "Berhasil!";
            $res['value'] = "$data";
+           $res['message'] = "$data->image";
            return response($res);
              return response()->json('sukses add',200);
          }
@@ -160,18 +160,22 @@ class ProductController extends Controller
       if (is_null($prod)) {
         return response()->json('Data tidak ditemukan',404);
       }
-
+      // $data->image = url('images') . '/' . $filename;
+      $tes = url('images') . '/' ;
       $imgNow = $prod->image; //ambil gmbar yang lama full url
-      $nameImg = str_replace('C:\laragon\www\cobaLaravellatihan\public\images\\','',$imgNow);
-      $image_path = 'C:/laragon/www/cobaLaravellatihan/public/images/'.$nameImg;
+      $nameImg = str_replace($tes,'',$imgNow);
+      $image_path = $tes . $nameImg;
       if(File::exists($image_path))
       {
-        File::delete($image_path);
+         File::delete($image_path);
       }
-      //File::delete($image_path);
 
       $prod->delete();
       return 'Sukses dihapus';
+
+      // print_r($nameImg);
+      // echo "<br>";
+      // print_r($imgNow);
     }
 
     public function updateNew(Request $request, $id)
@@ -182,6 +186,7 @@ class ProductController extends Controller
         $prod = Product::find($id);
 
         $imgNow = $prod->image; //ambil gmbar yang lama full url
+        $urlImg =  url('images') . '/' ;
         $nameImg = str_replace('C:\laragon\www\cobaLaravellatihan\public\images\\','',$imgNow);
         $image_path = 'C:/laragon/www/cobaLaravellatihan/public/images/'.$nameImg;
         if(File::exists($image_path))
@@ -192,7 +197,6 @@ class ProductController extends Controller
           // print_r('tidak ada file gambar');
           // echo "<br>";
         }
-
         if ($request->hasFile('image') && $name !== null)
         {
           $request->validate([
@@ -201,7 +205,7 @@ class ProductController extends Controller
           $filename = time() . '.'.$request->image->extension();
           $newImgInput = $request->file('image')->move(public_path('images'), $filename);
           $prod->name =  $name;
-          $prod->image = $newImgInput;
+          $prod->image = url('images') . '/' . $filename;
            $prod->save();
              return response()->json([
                 "message" => "succces save",
