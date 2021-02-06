@@ -55,6 +55,7 @@ class ProductController extends Controller
 
     //
      $name = $request->input('name');
+     $artcl = $request->input('article');
     if ($request->hasFile('image') && $name !== null)
       {
         $request->validate([
@@ -65,6 +66,7 @@ class ProductController extends Controller
 
        $data = new Product();
          $data->name = $name;
+         $data->article =$artcl;
          $data->image = url('images') . '/' . $filename;
          if($data->save())
          {
@@ -183,6 +185,7 @@ class ProductController extends Controller
       if (Product::where('id',$id)->exists())
       {
         $name = $request->input('name');
+        $artcl = $request->input('article');
         $prod = Product::find($id);
 
         $imgNow = $prod->image; //ambil gmbar yang lama full url
@@ -205,6 +208,7 @@ class ProductController extends Controller
           $filename = time() . '.'.$request->image->extension();
           $newImgInput = $request->file('image')->move(public_path('images'), $filename);
           $prod->name =  $name;
+          $prod->article =  $artcl;
           $prod->image = url('images') . '/' . $filename;
            $prod->save();
              return response()->json([
