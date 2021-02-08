@@ -33,6 +33,16 @@ class ProductController extends Controller
        }
     }
 
+
+    public function ByKategory(Request $request)
+    {
+   //  $category = $request->input('categoryid');
+     $idKat = $request->input('categoryid');
+     $data = DB::table('products')->where('categoryid', $idKat);
+     $data2 = Product::where('categoryid', '=', $idKat)->get();
+     $toJson = json_encode($data2);
+     return response($toJson);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -56,6 +66,8 @@ class ProductController extends Controller
     //
      $name = $request->input('name');
      $artcl = $request->input('article');
+     $category = $request->input('categoryid');
+     $jumlahInputKat = strlen($category);
     if ($request->hasFile('image') && $name !== null)
       {
         $request->validate([
@@ -63,10 +75,16 @@ class ProductController extends Controller
        ]);
        $filename = time() . '.'.$request->image->extension();
        $image = $request->file('image')->move(public_path('images'), $filename);
-
+      if($jumlahInputKat>1)
+      {
+        return response()->json([
+          "message" => "input hanya berupa angka 1-4",
+      ]);
+      }
        $data = new Product();
          $data->name = $name;
          $data->article =$artcl;
+         $data->categoryid = $category;
          $data->image = url('images') . '/' . $filename;
          if($data->save())
          {

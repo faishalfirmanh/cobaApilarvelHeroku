@@ -24,3 +24,5 @@ Route::resource('Product', 'ProductController');
 // Route::delete('ProductDel/{id}','ProductController@destroy');
 
 Route::post('Prod/{id}','ProductController@updateNew');
+
+Route::post('Kategori','ProductController@ByKategory');

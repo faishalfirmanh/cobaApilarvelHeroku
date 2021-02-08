@@ -18,6 +18,7 @@ class CreateTblProduct extends Migration
             $table->string('name');
             $table->string('article');
             $table->string('image');
+            $table->string('categoryid');
             $table->timestamps();
         });
     }
