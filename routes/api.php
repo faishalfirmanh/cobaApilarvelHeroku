@@ -26,3 +26,7 @@ Route::resource('Product', 'ProductController');
 Route::post('Prod/{id}','ProductController@updateNew');
 
 Route::post('Kategori','ProductController@ByKategory');
+
+Route::get('Nextartikel/{id}', 'ProductController@Nextartikel');
+
+Route::post('NextArticelCategory', 'ProductController@NextArticelCategory');

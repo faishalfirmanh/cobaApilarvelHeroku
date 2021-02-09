@@ -15,6 +15,30 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function Nextartikel($id)
+     {
+      $data = Product::find($id+1);
+      if($data == null)
+      {
+        $res['message'] = "kosong";
+        return response($res);
+      }
+      else
+      {
+        return $data;
+      }
+     }
+     public function NextArticelCategory(Request $request)
+     {
+      
+      $inputCat = $request->input('categoryid');
+      $data = DB::table('products')->where('categoryid', $inputCat);
+      $data2 = Product::where('categoryid', '=', $inputCat)->get();
+      $toJson = json_encode($data2);
+      return response($toJson);
+     }
+
     public function index()
     {
         //
