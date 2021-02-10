@@ -40,7 +40,6 @@ class ProductController extends Controller
       
        if($total > 1)
        {
-        print_r('ada');
         return response($toJson);
        }
        else
