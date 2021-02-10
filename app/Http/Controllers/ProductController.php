@@ -29,6 +29,27 @@ class ProductController extends Controller
         return $data;
       }
      }
+
+    public function Cariarticel(Request $request)
+    {
+       $keyword = $request->input('name');
+       $data = Product::where('name', '=', $keyword)->get();
+       $toJson = json_encode($data);
+       $strToarr = explode(" ",$toJson);
+       $total = count($strToarr);
+      
+       if($total > 1)
+       {
+        print_r('ada');
+        return response($toJson);
+       }
+       else
+       {
+        $res['message'] = "Kosong";
+        return 'not found';
+       }
+    }
+
      public function NextArticelCategory(Request $request)
      {
       
@@ -126,7 +147,7 @@ class ProductController extends Controller
      {
        return response()->json([
           "message" => "failed save",
-          "validasi" =>"name & image is null"
+          "validasi" =>"name & image is null brow"
       ]);
      }
 

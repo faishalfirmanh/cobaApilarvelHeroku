@@ -30,3 +30,5 @@ Route::post('Kategori','ProductController@ByKategory');
 Route::get('Nextartikel/{id}', 'ProductController@Nextartikel');
 
 Route::post('NextArticelCategory', 'ProductController@NextArticelCategory');
+
+Route::post('Cariarticel', 'ProductController@Cariarticel');
