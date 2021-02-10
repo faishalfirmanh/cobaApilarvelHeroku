@@ -113,7 +113,7 @@ class ProductController extends Controller
          if($data->save())
          {
            $res['value'] = "$data";
-           $res['message'] = "$data->image";
+           $res['message'] = "success";
            return response($res);
              return response()->json('sukses add',200);
          }
