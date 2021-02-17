@@ -37,7 +37,7 @@ class ProductController extends Controller
        $toJson = json_encode($data);
        $strToarr = explode(" ",$toJson);
        $total = count($strToarr);
-      
+
        if($total > 1)
        {
         return response($toJson);
@@ -51,7 +51,7 @@ class ProductController extends Controller
 
      public function NextArticelCategory(Request $request)
      {
-      
+
       $inputCat = $request->input('categoryid');
       $data = DB::table('products')->where('categoryid', $inputCat);
       $data2 = Product::where('categoryid', '=', $inputCat)->get();
@@ -120,11 +120,11 @@ class ProductController extends Controller
        $filename = time() . '.'.$request->image->extension();
        $image = $request->file('image')->move(public_path('images'), $filename);
       if($jumlahInputKat>1)
-      {
-        return response()->json([
-          "message" => "input hanya berupa angka 1-4",
-      ]);
-      }
+        {
+          return response()->json([
+            "message" => "input hanya berupa angka 1-4",
+          ]);
+        }
        $data = new Product();
          $data->name = $name;
          $data->article =$artcl;
@@ -141,12 +141,42 @@ class ProductController extends Controller
          {
              return "failed save";
          }
-      }
+     }
       else
      {
-       return response()->json([
-          "message" => "failed save",
-          "validasi" =>"name & image is null brow"
+
+       $name = $request->input('name');
+       $artcl = $request->input('article');
+       $category = $request->input('categoryid');
+       $jumlahInputKat = strlen($category);
+       if($jumlahInputKat>1)
+         {
+           return response()->json([
+             "message" => "input hanya berupa angka 1-4",
+           ]);
+         }
+        $data = new Product();
+          $data->name = $name;
+          $data->article =$artcl;
+          $data->categoryid = $category;
+          $data->image = "empty";
+          if($data->save())
+          {
+            $res['value'] = "$data";
+            $res['message'] = "success";
+            return response()->json([
+              "message" => "succes save",
+              "validasi" => "tapi gambar kosong"
+          ]);
+          }
+          else
+          {
+              return "failed save";
+          }
+
+        return response()->json([
+          "message" => "succes save",
+          "validasi" => "tapi gambar kosong"
       ]);
      }
 
