@@ -127,7 +127,12 @@ class CobaTanpaReload extends Controller
      */
     public function destroy($id)
     {
-
+      $places = Coba::find($id);
+      if (is_null($places)) {
+        return response()->json('Data tidak ditemukan',404);
+      }
+      $places->delete();
+      return 'Sukses dihapus';
     }
 
     public function updateNew(Request $request, $id)
