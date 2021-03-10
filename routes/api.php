@@ -26,11 +26,7 @@ Route::resource('Product', 'ProductController');
 // Route::get('ProductGet','ProductController@index');
 // Route::delete('ProductDel/{id}','ProductController@destroy');
 Route::post('Prod/{id}','ProductController@updateNew');
-
 Route::post('Kategori','ProductController@ByKategory');
-
 Route::get('Nextartikel/{id}', 'ProductController@Nextartikel');
-
 Route::post('NextArticelCategory', 'ProductController@NextArticelCategory');
-
 Route::post('Cariarticel', 'ProductController@Cariarticel');

@@ -16,6 +16,10 @@ class CobaTanpaReload extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function Coba()
+     {
+       dd("coba diluar");
+     }
 
     public function index()
     {
@@ -54,7 +58,7 @@ class CobaTanpaReload extends Controller
      */
     public function store(Request $request)
     {
-
+     
       $name = $request->input('name');
      if ($request->hasFile('image') !== null)
        {

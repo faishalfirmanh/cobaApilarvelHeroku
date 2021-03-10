@@ -1,0 +1,420 @@
+body {
+  background-color: whitesmoke;
+  font-family: 'RocknRoll One', sans-serif;
+  color: '#1d3e8b';
+}
+
+.btn-login {
+  background-color: darkblue;
+  color: white;
+}
+
+.btn-login:hover {
+  background-color: #5b5beb;
+  color: white;
+}
+
+.navbar-brand img {
+  max-width: 40px;
+}
+
+.btn-navbar-right {
+  margin-top: -10px !important;
+  margin-bottom: -8px !important;
+  margin-left: -18px !important;
+  margin-right: -18px;
+  height: 70px;
+  border-radius: 0px;
+}
+
+.active {
+  font-weight: bold;
+  color: #0d0d55 !important;
+}
+
+header {
+  margin-top: -70px;
+  padding: 180px 0 165px;
+  background-image: url("https://fv2-3.failiem.lv/thumb_show.php?i=kjq5ramvd&view");
+  background-size: cover;
+}
+
+header h1, header p {
+  color: white;
+}
+
+header h1 {
+  font-family: 'Shadows Into Light', cursive;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+header .btn-get-strated {
+  background-color: coral;
+  color: white;
+}
+
+header .btn-get-strated:hover {
+  background-color: #ffe600;
+  color: black;
+}
+
+.section-stats {
+  margin-top: -50px;
+}
+
+.section-stats .stats-detail {
+  padding-top: 15px;
+  background-color: #ddebac;
+  padding-left: 50px;
+}
+
+.section-stats h2 {
+  font-size: 30px;
+  margin-bottom: 0;
+}
+
+.section-stats p {
+  font-size: 15px;
+  font-weight: lighter;
+}
+
+.section-popular {
+  min-height: 550px;
+  background-color: #181858;
+  margin-top: -50px;
+  margin-bottom: -230px;
+}
+
+.section-popular .section-popular-heading {
+  margin-top: 150px;
+}
+
+.section-popular .section-popular-heading h2, .section-popular .section-popular-heading p {
+  color: #e9e9e9;
+}
+
+.section-popular .section-popular-heading h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.section-popular .section-popular-heading p {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 18px;
+}
+
+.section-popular-content .section-popular-travel .card-travel {
+  min-height: 380px;
+  background-color: #aeb8ae;
+  color: blanchedalmond;
+  padding: 30px;
+  background-size: cover;
+  margin-bottom: 20px;
+}
+
+.section-popular-content .section-popular-travel .travel-country {
+  font-size: 18px;
+  color: white;
+}
+
+.section-popular-content .section-popular-travel .travel-location {
+  font-size: 15px;
+  color: white;
+}
+
+.section-popular-content .section-popular-travel .btn-travel-detail {
+  background-color: #f0a314;
+  color: white;
+}
+
+.section-popular-content .section-popular-travel .btn-travel-detail:hover {
+  background-color: #f59157;
+  color: white;
+}
+
+.section-network {
+  background-color: white;
+  margin-top: -170px;
+  padding-top: 240px;
+  padding-bottom: 50px;
+}
+
+.section-network h2, .section-network p {
+  font-family: 'Source Code Pro', monospace;
+}
+
+.section-network img {
+  max-width: 100%;
+}
+
+.section-testimonial-heading {
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#dad5d5));
+  background: linear-gradient(white 0%, #dad5d5 100%);
+  padding-top: 50px;
+  min-height: 506px;
+  margin-bottom: 20px;
+  font-size: 40px;
+}
+
+.section-testimonial-heading h2 {
+  font-weight: bold;
+  font-size: 40px;
+  color: #0e0e6d;
+}
+
+.section-testimonial-heading p {
+  font-family: 'Coming Soon', cursive;
+  font-size: 22px;
+  color: #0e0e6d;
+}
+
+.section-testimonial-content {
+  margin-top: -300px;
+  padding-bottom: 50px;
+}
+
+.section-testimonial-content .card-testimonial {
+  margin-top: 20px;
+  padding: 40px 20px 10px;
+  border-radius: 11px;
+  margin-bottom: 20px;
+}
+
+.section-testimonial-content .card-testimonial .testimonial-content {
+  min-height: 380px;
+}
+
+.section-testimonial-content .card-testimonial .testimonial-content img {
+  width: 110px;
+  height: 110px;
+  border-radius: 55px;
+}
+
+.section-testimonial-content .card-testimonial h3 {
+  font-size: 25px;
+}
+
+.section-testimonial-content .card-testimonial .testimonial {
+  font-weight: 200;
+  font-size: 18px;
+  color: cadetblue;
+  min-height: 150px;
+}
+
+.section-testimonial-content .card-testimonial .trip-to {
+  font-weight: normal;
+  font-size: 22px;
+  color: cornflowerblue;
+}
+
+.section-testimonial-content .card-testimonial hr {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.section-testimonial-content .btn-need-help {
+  background-color: #bab6b6;
+  color: white;
+}
+
+.section-testimonial-content .btn-started {
+  background-color: coral;
+  color: white;
+  margin-top: -5px;
+}
+
+.section-footer a {
+  color: black;
+  font-size: 15px;
+  font-weight: lighter;
+}
+
+.section-details-header {
+  min-height: 310px;
+  margin-top: -68px;
+  background: #b5b5b5;
+}
+
+.section-details-content {
+  margin-top: -210px;
+  min-height: 100vh;
+}
+
+.section-details-content .breadcrumb {
+  background-color: transparent;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.section-details-content .breadcrumb-item.active {
+  font-weight: bold  !important;
+  color: #13136d !important;
+}
+
+.section-details-content .card-details {
+  padding: 30px;
+  border-radius: 11px;
+}
+
+.section-details-content .card-details h1 {
+  font-size: 20px;
+}
+
+.section-details-content .card-details p {
+  font-size: 15px;
+  font-weight: lighter;
+  color: black;
+}
+
+.section-details-content .card-details .negara {
+  color: #c7c7c7;
+  font-size: 17px;
+}
+
+.section-details-content .card-details .titleWisata {
+  font-size: 45px;
+}
+
+.section-details-content .card-details .features {
+  margin-top: 20px;
+}
+
+.section-details-content .card-details .features h3 {
+  font-size: 18px;
+  color: #0dce4d;
+  margin-bottom: 0;
+}
+
+.section-details-content .card-details .features p {
+  margin-bottom: 0px;
+  font-size: 15px;
+}
+
+.section-details-content .card-details .features .descriptions {
+  margin-left: 10px;
+  overflow: hidden;
+  float: left;
+}
+
+.section-details-content .card-details .features .features-image {
+  float: left;
+  width: 45px;
+  height: 45px;
+}
+
+.section-details-content .card-details .gallery .xzoom {
+  width: 100%;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  height: 400px;
+  margin-bottom: 10px;
+}
+
+.section-details-content .card-details .gallery .xzoom-container {
+  display: block;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  margin-bottom: 10px;
+}
+
+.section-details-content .card-details .gallery .xactive {
+  border: 4px solid;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.section-details-content .card-details .gallery .xzoom-gallery {
+  margin-top: 10;
+  margin-left: 10;
+  width: 120px;
+  height: 80px;
+}
+
+.section-details-content .card-details .gallery .rataList {
+  margin-bottom: 5px;
+  margin-left: 0px;
+}
+
+.section-details-content .join-container {
+  margin-top: -16px;
+}
+
+.section-details-content .join-container .btn-join {
+  background-color: #e22d0c;
+  color: beige;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.section-details-content .join-container .btn-join:hover {
+  background-color: #f05f5f;
+  color: beige;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.section-details-content .card-right {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.section-details-content .card-right h2 {
+  font-family: "Shippori Mincho B1", serif;
+  font-size: 30px;
+}
+
+.section-details-content .card-right td {
+  font-family: "Jura", sans-serif;
+  font-weight: bold;
+}
+
+.section-details-content .card-right .members .members-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.section-details-content .card-right .payment {
+  font-family: "Jura", sans-serif;
+}
+
+.section-details-content .card-right .bank .bank-item h3 {
+  font-family: "Shippori Mincho B1", serif;
+  font-size: 20px;
+}
+
+.section-details-content .card-right .bank .bank-item p {
+  margin-bottom: 0;
+}
+
+.section-details-content .card-right .bank .bank-item .bank-img {
+  float: left;
+  width: 50px;
+  height: 40px;
+}
+
+.section-details-content .card-right .bank .bank-item .desc-bank {
+  margin-left: 15px;
+  overflow: hidden;
+  float: left;
+}
+
+.section-details-content .card-right .bank .bank-item .desc-bank p {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.btn-add-now {
+  margin-left: 10px;
+  background-color: #000092;
+  color: white;
+}
+
+.btn-add-now:hover {
+  margin-left: 10px;
+  background-color: #5353ff;
+  color: white;
+}
+/*# sourceMappingURL=main.css.map */
