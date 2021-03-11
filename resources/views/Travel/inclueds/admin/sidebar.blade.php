@@ -21,10 +21,15 @@
               </p>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+              <a class="dropdown-item">{{ Auth::user()->name }}</a>
               <a class="dropdown-item" href="#">Profile</a>
               <a class="dropdown-item" href="#">Settings</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Log out</a>
+              <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                {{-- <button class="btn btn-primay" type="submit">Log out</a> --}}
+                <input type="submit" value="logout" class="dropdown-item">
+              </form>
             </div>
           </li>
         </ul>
