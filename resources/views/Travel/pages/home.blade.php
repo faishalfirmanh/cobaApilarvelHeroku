@@ -17,7 +17,7 @@
     <p>
       top global badang is comming
     </p>
-    <a href="#" class="btn btn-get-strated px-4 mt-4">
+    <a href="#popular" class="btn btn-get-strated px-4 mt-4">
       Mari mulai
     </a>
 </header>
@@ -63,65 +63,34 @@
       <div class="container">
         <div class="section-popular-travel row justify-content-center">
           <!-- batas -->
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <div 
-            class="card-travel text-center d-flex flex-column" 
-            style="background-image:url('https://merahputih.com/media/f1/b9/9b/f1b99b35dd23c297064c39a3b9145dfa.jpg')"
-            > 
-              <div class="travel-country">Indonesia</div>
-              <div class="travel-location">Papua,raja ampat</div>
-              <div class="travel-button mt-auto">
-                <a href="{{url('/Travel/detail')}}" class="btn btn-travel-detail px-4">
-                  view details
-                </a>
-              </div>
-            </div>
-          </div>
+         @foreach ($data as $item)
+            
+            @php
+                 $urlAsli = $item->travel_galleries->first->image->image;
+                 $remove = str_replace('C:\laragon\www\cobaLaravellatihan\public\imagesUpload\\', '', $urlAsli);
+                 
+                 echo "<br>";
+                // echo $urlAsli;
+            @endphp
 
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <div 
-            class="card-travel text-center d-flex flex-column" 
-            style="background-image:url('https://fv2-1.failiem.lv/thumb_show.php?i=8vgxme4bm&view&download_checksum=82e57122e51246d2edf210973c17b56be5f63340&download_timestamp=1614822737')"
-            > 
-              <div class="travel-country">Indonesia</div>
-              <div class="travel-location">Yogjakarta, borobudur</div>
-              <div class="travel-button mt-auto">
-                <a href="{{url('/Travel/detail')}}" class="btn btn-travel-detail px-4">
-                  view details
-                </a>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div 
+              class="card-travel text-center d-flex flex-column" 
+              style="background-image:url('/imagesUpload/{{ $remove }}')"
+              > 
+                <div class="travel-country">{{ $item->location }}</div>
+                <div class="travel-location">{{ $item->title }}</div>
+                <div class="travel-button mt-auto">
+                  <a href="{{url('/Travel/detail', $item->slug)}}" class="btn btn-travel-detail px-4">
+                    view details
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <div 
-            class="card-travel text-center d-flex flex-column" 
-            style="background-image:url('https://fv2-1.failiem.lv/thumb_show.php?i=s7nmb3aje&view&download_checksum=02baa69719e336a93fbe47282341567f194acdb7&download_timestamp=1614822801')"
-            > 
-              <div class="travel-country">Indonesia</div>
-              <div class="travel-location">Kawah ijen,Banyuwangi</div>
-              <div class="travel-button mt-auto">
-                <a href="{{url('/Travel/detail')}}" class="btn btn-travel-detail px-4">
-                  view details
-                </a>
-              </div>
-            </div>
-          </div>
+         @endforeach 
 
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <div 
-            class="card-travel text-center d-flex flex-column" 
-            style="background-image:url('https://fv2-2.failiem.lv/thumb_show.php?i=axzbr48kx&view&download_checksum=c4b7d897dbf9a6421ee8ef316877df11b94c3a2f&download_timestamp=1614822766')"
-            > 
-              <div class="travel-country">Indonesia</div>
-              <div class="travel-location">Bali, bedugul</div>
-              <div class="travel-button mt-auto">
-                <a href="{{url('/Travel/detail')}}" class="btn btn-travel-detail px-4">
-                  view details
-                </a>
-              </div>
-            </div>
-          </div>
+        
           <!-- card -->
         </div>
       </div>
@@ -248,7 +217,7 @@
           <a href="#" class="btn btn-need-help px-4 mt-4 mx-1">
             I need help
           </a>
-          <a href="#" class="btn btn-started px-4 mt-4 mx-1">
+          <a href="" class="btn btn-started px-4 mt-4 mx-1">
            get started
           </a>
         </div>

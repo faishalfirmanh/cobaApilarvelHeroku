@@ -22,7 +22,7 @@ class TravelPackageController extends Controller
         //
         $items = TravelPacage::all();
         return view('Travel.pages.admin.travelPackage.index',[
-            'items'=> $items
+            'data'=> $items
         ]);
 
     }
@@ -81,7 +81,7 @@ class TravelPackageController extends Controller
         //
         $item = TravelPacage::findOrFail($id);
         return view('Travel.pages.admin.travelPackage.edit',[
-            'item' => $item
+            'data' => $item
         ]);
     }
 
@@ -124,7 +124,7 @@ class TravelPackageController extends Controller
         $pacage->delete();
         $items = TravelPacage::all();
         return view('Travel.pages.admin.travelPackage.index',[
-            'items'=> $items]);
+            'data'=> $items]);
        // return view('Travel.pages.admin.travelPackage.succesdelete');
        
     }

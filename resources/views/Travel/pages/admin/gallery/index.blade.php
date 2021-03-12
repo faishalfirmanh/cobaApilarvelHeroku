@@ -26,7 +26,7 @@
                     @forelse ($items as $item)
                         <tr>
                             <th>{{$item->id}}</th>
-                            <th>{{$item->travel_pacage->title}}</th>
+                            <th></th>
                             <th>
                                 @php
                                      $urlAsli = $item->image;

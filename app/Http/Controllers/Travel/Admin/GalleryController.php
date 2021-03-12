@@ -22,9 +22,9 @@ class GalleryController extends Controller
     public function index()
     {
         //
-        $items = GalleryTravelPacage::with(['travel_pacage'])->get(); //relasi dengan nama fungsi travel_pacage
+        $data = GalleryTravelPacage::with(['travel_pacage'])->get(); //relasi dengan nama fungsi travel_pacage
         return view('Travel.pages.admin.gallery.index',[
-            'items'=> $items
+            'items'=> $data
         ]);
 
     }

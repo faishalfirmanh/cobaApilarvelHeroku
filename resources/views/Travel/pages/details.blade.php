@@ -5,6 +5,11 @@
     Detail Travel
 @endsection
 
+@php
+    $urlAsli =  $item->travel_galleries->first->image->image;
+    $remove = str_replace('C:\laragon\www\cobaLaravellatihan\public\imagesUpload\\', '', $urlAsli);
+@endphp
+
 @section('content')
 <main>
     <section class="section-details-header"></section>
@@ -27,75 +32,57 @@
         <div class="row">
           <div class="col-lg-8 pl-lg-0">
             <div class="card card-details">
-              <h1 class="titleWisata">Nusa Penida</h1>
+              <h1 class="titleWisata">{{ $item->title }}</h1>
               <p class="negara">
-                Republik indonesia
+               {{ $item->location }}
               </p>
-              <div class="gallery">
-                <div class="xzoom-container">
-                  <img src="https://i.pinimg.com/originals/4e/f2/20/4ef220e4455a6cce3873de9e54aa1663.jpg" 
-                    class="xzoom" 
-                    id="xzoom-default" 
-                    xoriginal="https://i.pinimg.com/originals/4e/f2/20/4ef220e4455a6cce3873de9e54aa1663.jpg"  
-                    alt="">
-                <!-- diatas untuk priview -->
-                  <div class="xzoom-thumbs">
-                    <a href="https://i.pinimg.com/originals/4e/f2/20/4ef220e4455a6cce3873de9e54aa1663.jpg">
-                      <img src="https://i.pinimg.com/originals/4e/f2/20/4ef220e4455a6cce3873de9e54aa1663.jpg" 
-                      class="xzoomGalery rataList" 
-                      width="130" 
-                      height="80"
-                      xpreview="https://i.pinimg.com/originals/4e/f2/20/4ef220e4455a6cce3873de9e54aa1663.jpg">
-                    </a>
-                    <a href="https://i.pinimg.com/originals/1d/ed/ef/1dedefb3b23accbe7944a0d37598f242.jpg">
-                      <img src="https://i.pinimg.com/originals/1d/ed/ef/1dedefb3b23accbe7944a0d37598f242.jpg" 
-                      class="xzoomGalery rataList" 
-                      width="130" 
-                      height="80"
-                      xpreview="https://i.pinimg.com/originals/1d/ed/ef/1dedefb3b23accbe7944a0d37598f242.jpg">
-                    </a>
-                    <a href="https://i.ytimg.com/vi/s4HBNFNStWs/maxresdefault.jpg">
-                      <img src="https://i.ytimg.com/vi/s4HBNFNStWs/maxresdefault.jpg" 
-                      class="xzoomGalery rataList" 
-                      width="130" 
-                      height="80"
-                      xpreview="https://i.ytimg.com/vi/s4HBNFNStWs/maxresdefault.jpg">
-                    </a>
-                    <a href="https://www.wandernesia.com/wp-content/uploads/2018/11/kelingking-beach-cliff-1024x767.jpg">
-                      <img src="https://www.wandernesia.com/wp-content/uploads/2018/11/kelingking-beach-cliff-1024x767.jpg" 
-                      class="xzoomGalery rataList" 
-                      width="130" 
-                      height="80"
-                      xpreview="https://www.wandernesia.com/wp-content/uploads/2018/11/kelingking-beach-cliff-1024x767.jpg">
-                    </a>
-                    <a href="https://ksmtour.com/media/images/articles18/pulau-wayag-papua-barat.jpg">
-                      <img src="https://ksmtour.com/media/images/articles18/pulau-wayag-papua-barat.jpg" 
-                      class="xzoomGalery  rataList" 
-                      width="130" 
-                      height="80"
-                      xpreview="https://ksmtour.com/media/images/articles18/pulau-wayag-papua-barat.jpg">
-                    </a>
-                  </div>
+              @if ($item->travel_galleries->count())
+                <div class="gallery">
+                  <div class="xzoom-container">
+                    <img 
+                      src="/imagesUpload/{{ $remove }}" 
+                      class="xzoom" 
+                      id="xzoom-default" 
+                      xoriginal="/imagesUpload/{{ $remove }}"  
+                      alt="">
+                  <!-- diatas untuk priview -->
+                     <div class="xzoom-thumbs">
+
+                        @foreach ($item->travel_galleries as $gambar)
+
+                            @php
+                                $patGmbarFull = $gambar->image;
+                                $removePathJustFileImg = str_replace('C:\laragon\www\cobaLaravellatihan\public\imagesUpload\\', '', $patGmbarFull);
+                            @endphp
+
+                            <a href="/imagesUpload/{{ $removePathJustFileImg }}">
+                              <img src="/imagesUpload/{{ $removePathJustFileImg }}" 
+                              class="xzoomGalery rataList" 
+                              width="130" 
+                              height="80"
+                              xpreview="/imagesUpload/{{ $removePathJustFileImg }}">
+                            </a>
+
+                        @endforeach
+
+                      </div>
+                  </div> 
                 </div> 
-              </div> 
+              @endif
               <h2>
                 Tentang wisata
               </h2>
               <p>
-                Perbukitan dan kapur karang merupakan kondisi tanah di pulau ini, salah satunya gunung bukit tertinggi bernama Gunung Mundi yang terletak di Kecamatan Nusa Penida. Sumber air adalah mata air dan sungai hanya terdapat di wilayah daratan Kabupaten Klungkung yang mengalir sepanjang tahun.
-                Desa-desa pesisir nusa penida di sepanjang pantai bagian utara berupa lahan datar dengan kemiringan 0 – 3 % dari ketinggian lahan 0-268 m dpl.
+                {{ $item->about }}
               </p>
-              <p>
-                Sedangkan di Kecamatan Nusa Penida sama sekali tidak ada sungai. Sumber air di Kecamatan Nusa Penida adalah mata air dan air hujan yang ditampung dalam cubang oleh penduduk setempat. Kabupaten Klungkung termasuk beriklim tropis. Bulan-bulan basah dan bulan-bulan kering antara Kecamatan Nusa Penida dan Kabupaten Klungkung daratan sangat berbeda.
-                Infrastruktur wisata dan pengembangan akses ke lokasi destinasi wisata sudah mulai tumbuh di Bali 3 nusa ini. Keramahan lokal akan anda temui di setiap sudut Bali 3 nusa ini yang memiliki populasi 46.749 jiwa (8.543 KK) pada sensus 2010, meliputi 202,8 km2 yang sudah mulai banyak mengalami perubahan sejak 10 tahun belakangan ini.
-              </p>
+            
               <div class="features row">
                 <!--  -->
                 <div class="col-md-4 border-left">
                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT-fO0Y_mDT8whgRdvO75YtzKut9-ZzbcgqQ&usqp=CAU" class="features-image"/>
                   <div class="descriptions">
                     <h3>Features event</h3>
-                    <p>Tari kecak</p>
+                    <p>{{ $item->featured_events }}</p>
                   </div>
                 </div>
                 <!--  -->
@@ -104,7 +91,7 @@
                    <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/language-1408420-1191250.png" class="features-image"/>
                   <div class="descriptions">
                     <h3>Bahasa</h3>
-                    <p>Bahasa Indonesia</p>
+                    <p>{{ $item->leagueges }}</p>
                   </div>
                 </div>
                 <!--  -->
@@ -113,7 +100,7 @@
                    <img src="https://saran.id/downloadpng/wallpaper/20201026/icon-food-png-wallpaper-food-icons-4-000-free-files-in-png-eps-svg-format-png-preview.jpg" class="features-image"/>
                   <div class="descriptions">
                     <h3>Foods</h3>
-                    <p>Local foods</p>
+                    <p>{{ $item->food }}</p>
                   </div>
                 </div>
                 <!--  -->

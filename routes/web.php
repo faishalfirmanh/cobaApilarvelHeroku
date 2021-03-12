@@ -32,15 +32,15 @@ Route::prefix('Travel')->group(function ()
         return view('Travel.pages.Cek');
     });
 
-    Route::get('/',function(){  //home leanding page
-        return view('Travel.pages.home');
-    });
+    // Route::get('/',function(){  //home leanding page
+    //     return view('Travel.pages.home');
+    // });
    
     Route::get('dashAdminTravel', 'Travel\Admin\DashboardController@index')->middleware(['auth','admin'])->name('dashAdminTravel');
 
     Route::get('home','Travel\HomeController@index')->name('home'); //cara moderen langsung panggil home, tanpa prefixnya
     Route::get('cekoutSucces', 'Travel\CheckoutController@index')->name('cekoutSucces');
-    Route::get('detail','Travel\DetailController@index');
+    Route::get('detail/{slug}','Travel\DetailController@index');
     Route::get('cek','Travel\CheckoutController@index');
 
     Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) { //email ferirication

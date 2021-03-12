@@ -38,13 +38,15 @@
        
         @guest
 
-        <form class="form-inline d-sm-block d-md-none" action="" onclick="event.preventDefault(): location.href='{{route('login')}}'; ">
+        <form class="form-inline d-sm-block d-md-none" action="{{route('login')}}">
+        {{-- onclick="event.preventDefault(): location.href='{{route('login')}}'; "> --}}
           <button class="btn btn-login my-2 my-sm-0">
             Masuk
           </button>
         </form>
         <!-- Desktop Button -->
-        <form class="form-inline my-2 my-lg-0 d-none d-md-block" action="" onclick="event.preventDefault(): location.href='{{ route('login')}}'; ">
+        <form class="form-inline my-2 my-lg-0 d-none d-md-block" action="{{route('login')}}"> 
+        {{-- onclick="event.preventDefault(): location.href='{{ route('login')}}'; "> --}}
           <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4">
             Masuk
           </button>
@@ -57,7 +59,7 @@
         <form class="form-inline d-sm-block d-md-none" 
         action="{{url('logout')}}" 
         method="POST">
-          <button class="btn btn-login my-2 my-sm-0"  type="submit">
+          <button class="btn btn-danger my-2 my-sm-0"  type="submit">
             @csrf
             logout
           </button>
@@ -66,7 +68,7 @@
         <form class="form-inline my-2 my-lg-0 d-none d-md-block" 
         action="{{url('logout')}}" 
         method="POST">
-          <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4" type="submit">
+          <button class="btn btn-danger btn-navbar-right my-2 my-sm-0 px-4" type="submit">
             @csrf
             logout
           </button>
