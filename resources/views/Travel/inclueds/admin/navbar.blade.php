@@ -18,13 +18,13 @@
       </a>
     </li>
     <li class="nav-item ">
-      <a class="nav-link" href="./tables.html">
+      <a class="nav-link" href="{{ url('/Travel/gallery') }}">
         <i class="material-icons">image</i>
         <p>Galery Travel</p>
       </a>
     </li>
     <li class="nav-item ">
-      <a class="nav-link" href="./typography.html">
+      <a class="nav-link" href="{{ route('transactions.index') }}">
         <i class="material-icons">monetization_on</i>
         <p>Transaksi</p>
       </a>

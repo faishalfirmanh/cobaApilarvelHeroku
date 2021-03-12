@@ -16,9 +16,10 @@ class CreateTravelTransactionsTable extends Migration
         Schema::create('travel_transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('travel_package_id');
+            $table->integer('users_id')->nullable();
             $table->integer('additional_visa');
             $table->integer('transactions_total');
-            $table->integer('transaction_status');
+            $table->string('transaction_status');
             //incar, pending, succes, cencel, failed
             $table->softDeletes();
             $table->timestamps();

@@ -48,7 +48,10 @@ Route::prefix('Travel')->group(function ()
         return redirect('Travel/home');
     })->middleware(['auth', 'signed'])->name('verification.verify');
 
+    
     Route::resource('travel-pacage','Travel\Admin\TravelPackageController');
+    Route::resource('gallery','Travel\Admin\GalleryController');
+    Route::resource('transactions','Travel\Admin\TransactionsController');
 
 
     Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () { //bawaan ketiak install auth jetstream

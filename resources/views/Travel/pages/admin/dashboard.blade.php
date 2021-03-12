@@ -12,7 +12,8 @@
                 <i class="material-icons">hotel</i>
               </div>
               <p class="card-category">Paket Travel</p>
-              <h3 class="card-title">10
+              <h3 class="card-title">
+                {{ $travel_pacakge }}
               </h3>
             </div>
             <div class="card-footer">
@@ -29,7 +30,7 @@
                 <i class="material-icons">monetization_on</i>
               </div>
               <p class="card-category">Transaksi</p>
-              <h3 class="card-title">$34,245</h3>
+              <h3 class="card-title">{{ $transaksi }}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">
@@ -45,7 +46,7 @@
                 <i class="material-icons">schedule</i>
               </div>
               <p class="card-category">Pandding</p>
-              <h3 class="card-title">5</h3>
+              <h3 class="card-title">{{ $transaksiPanding }}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">
@@ -61,7 +62,7 @@
                 <i class="material-icons">insert_emoticon</i>
               </div>
               <p class="card-category">Suksess</p>
-              <h3 class="card-title">25</h3>
+              <h3 class="card-title"> {{ $transaksiSucces }} </h3>
             </div>
             <div class="card-footer">
               <div class="stats">
