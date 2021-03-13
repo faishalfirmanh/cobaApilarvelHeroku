@@ -19,7 +19,7 @@ class GalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index()  
     {
         //
         $data = GalleryTravelPacage::with(['travel_pacage'])->get(); //relasi dengan nama fungsi travel_pacage

@@ -64,13 +64,11 @@
         <div class="section-popular-travel row justify-content-center">
           <!-- batas -->
          @foreach ($data as $item)
-            
             @php
-                 $urlAsli = $item->travel_galleries->first->image->image;
+                 $urlAsli = $item->travel_galleries->first->image;
                  $remove = str_replace('C:\laragon\www\cobaLaravellatihan\public\imagesUpload\\', '', $urlAsli);
-                 
-                 echo "<br>";
-                // echo $urlAsli;
+                 $toJson = json_decode($remove,true);
+                 print_r($toJson);
             @endphp
 
             <div class="col-sm-6 col-md-4 col-lg-3">

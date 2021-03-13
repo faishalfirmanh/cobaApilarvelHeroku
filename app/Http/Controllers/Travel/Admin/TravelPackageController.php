@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Travel\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Travel\TravelPacage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 use App\Http\Requests\Travel\Admin\TravelPacageRequest;
@@ -23,6 +24,7 @@ class TravelPackageController extends Controller
         $items = TravelPacage::all();
         return view('Travel.pages.admin.travelPackage.index',[
             'data'=> $items
+           //'data' => DB::table('travel_pacages')->paginate(5)
         ]);
 
     }

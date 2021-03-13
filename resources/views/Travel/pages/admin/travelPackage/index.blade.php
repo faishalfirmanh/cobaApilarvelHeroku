@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="content">
     <h1>Paket Travel</h1>
     <div class="container-fluid">
@@ -57,5 +56,4 @@
         </div>
     </div>
 </div>
-
 @endsection

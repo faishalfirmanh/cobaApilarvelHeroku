@@ -24,15 +24,20 @@
                     </thead>
                     <tbody>
                     @forelse ($items as $item)
+                    @php
+                        $nameTravel = $item->travel_pacage;
+                        $urlAsli = $item->image;
+                        $remove = str_replace('C:\laragon\www\cobaLaravellatihan\public\imagesUpload\\', '', $urlAsli);
+                    @endphp
                         <tr>
                             <th>{{$item->id}}</th>
-                            <th></th>
+                            <th>{{ $nameTravel->title }}</th>
                             <th>
-                                @php
-                                     $urlAsli = $item->image;
-                                     $remove = str_replace('C:\laragon\www\cobaLaravellatihan\public\imagesUpload\\', '', $urlAsli);
-                                @endphp
-                                <img src="/imagesUpload/{{ $remove }}" width="208px" height="138" class="img-thumbnail" alt="">
+                                @if(file_exists(public_path() . '/imagesUpload/' . $remove)) 
+                                    <img src="/imagesUpload/{{ $remove }}" width="208px" height="138" class="img-thumbnail" alt="">
+                                @else
+                                    <h3>Maaf domain gratis gambar tidak ada</h1>
+                                @endif
                             </th>
                             <th>
                                 <a href="{{ route('gallery.edit', $item->id)}}" class="btn btn-info">

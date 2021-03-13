@@ -123,33 +123,43 @@
                 <tr>
                   <th width="50%">Date of depature</th>
                   <td width="50%" class="text-right">
-                      05-03-2021
+                     {{ \Carbon\Carbon::create($item->departure_date)->format('F n, Y') }}
                   </td>
                 </tr>
                 <tr>
                   <th width="50%">Durations</th>
                   <td width="50%" class="text-right">
-                      4d 3N
+                     {{ $item->duration }}
                   </td>
                 </tr>
                 <tr>
                   <th width="50%">Type</th>
                   <td width="50%" class="text-right">
-                     Open trip
+                    {{ $item->type }}
                   </td>
                 </tr>
                 <tr>
                   <th width="50%">Price</th>
                   <td width="50%" class="text-right">
-                     $120.00 /person
+                     $ {{ $item->price }} /person
                   </td>
                 </tr>
               </table>
             </div>
             <div class="join-container">
-              <a href="#" class="btn btn-block btn-join mt-3 py-2">
-                Join now
-              </a>
+              @auth
+                <form action="{{ route('checkout_process', $item->id)}}" method="POST">
+                  @csrf
+                  <button class="btn btn-block btn-join mt-3 py-2" type="submit">
+                    Join Now
+                  </button>
+                </form>  
+              @endauth
+              @guest
+                <a href="{{ route('login') }}" class="btn btn-block btn-info mt-3 py-2">
+                  Login
+                </a>  
+              @endguest
             </div>
           </div>
         </div>
