@@ -6,7 +6,7 @@
 @endsection
 
 @php
-    $urlAsli =  $item->travel_galleries->first->image->image;
+    $urlAsli =  $item->travel_galleries->first()->image;
     $remove = str_replace('C:\laragon\www\cobaLaravellatihan\public\imagesUpload\\', '', $urlAsli);
 @endphp
 

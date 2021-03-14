@@ -11,9 +11,12 @@ use App\Models\Travel\TransactionDetail;
 use App\Models\User;
 
 use Carbon\Carbon;
-
-
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades;
+
+use Midtrans\Config;
+use Midtrans\Snap;
 
 
 class CheckoutController extends Controller
@@ -97,9 +100,43 @@ class CheckoutController extends Controller
 
     public function succes(Request $req, $id)
     {
-        $transactions = Transaction::findOrFail($id);
+        $transactions = Transaction::with(['relasiUser','travel_packages','details_transctions'])->findOrFail($id);
         $transactions->transaction_status = 'PENDING';
-        $transactions->save();
-        return view('Travel.pages.succes');
+       $transactions->save();
+       //return view('Travel.pages.succes');
+
+  //     row baru midtrans
+        Config::$serverKey = config('midtrans.serverkey');
+        Config::$isProduction  = config('midtrans.isProduction');
+        Config::$isSanitized  = config('midtrans.isSanitized');
+        Config::$is3ds  = config('midtrans.is3ds');
+
+       $midtransTransaction = [ // pake snap
+           'transaction_details' =>[
+               'order_id' => 'MIDTRANS_dev_' . $transactions->id,
+               'gross_amount' => (int) $transactions->transactions_total
+           ],
+
+           'customer_details' =>[
+               'first_name' => $transactions->relasiUser->name,
+               'email' => $transactions->relasiUser->email,
+           ],
+           'enabled_payments' => ['gopay'],
+           'vtweb' => []
+        ];
+
+        // dd(config('midtrans.serverkey'));
+        try 
+        {
+            $paymentUrl = Snap::createTransaction($midtransTransaction)->redirect_url;
+            //redirect succes
+            header('Location: ' . $paymentUrl);
+            exit();
+        } 
+        catch (Exception $error) 
+        {
+            echo $error->getMessage();
+        }
+        
     }
 }

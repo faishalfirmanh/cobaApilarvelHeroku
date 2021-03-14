@@ -13,7 +13,7 @@ class HomeController extends Controller
 
     public function index()
     {   
-        $dataPackage = TravelPacage::with(['travel_galleries'])->get();
-        return view('Travel.pages.home',['data' => $dataPackage]);
+        $data = TravelPacage::with(['travel_galleries'])->get();
+        return view('Travel.pages.home', ['data' => $data]);
     }
 }

@@ -68,13 +68,13 @@
                  $urlAsli = $item->travel_galleries->first->image;
                  $remove = str_replace('C:\laragon\www\cobaLaravellatihan\public\imagesUpload\\', '', $urlAsli);
                  $toJson = json_decode($remove,true);
-                 print_r($toJson);
+                 $vvv = $urlAsli;
             @endphp
 
             <div class="col-sm-6 col-md-4 col-lg-3">
               <div 
               class="card-travel text-center d-flex flex-column" 
-              style="background-image:url('/imagesUpload/{{ $remove }}')"
+              style="background-image:url('/imagesUpload/{{ $item->travel_galleries->count() ? 'ds' : '' }}')"
               > 
                 <div class="travel-country">{{ $item->location }}</div>
                 <div class="travel-location">{{ $item->title }}</div>
