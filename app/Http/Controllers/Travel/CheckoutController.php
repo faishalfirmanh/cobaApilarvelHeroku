@@ -101,11 +101,11 @@ class CheckoutController extends Controller
     public function succes(Request $req, $id)
     {
         $transactions = Transaction::with(['relasiUser','travel_packages','details_transctions'])->findOrFail($id);
-        $transactions->transaction_status = 'PENDING';
-       $transactions->save();
+        $transactions->transaction_status = 'SUCCESS';
+        $transactions->save();
        //return view('Travel.pages.succes');
 
-  //     row baru midtrans
+      //row baru midtrans
         Config::$serverKey = config('midtrans.serverkey');
         Config::$isProduction  = config('midtrans.isProduction');
         Config::$isSanitized  = config('midtrans.isSanitized');
@@ -124,8 +124,6 @@ class CheckoutController extends Controller
            'enabled_payments' => ['gopay'],
            'vtweb' => []
         ];
-
-        // dd(config('midtrans.serverkey'));
         try 
         {
             $paymentUrl = Snap::createTransaction($midtransTransaction)->redirect_url;

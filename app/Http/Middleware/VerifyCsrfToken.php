@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        //tambahnya karena menarunya di route web
+        'midtrans/*'
     ];
 }

@@ -166,7 +166,7 @@
                <div class="bank-item pb-3">
                  <img 
                  class="bank-img"
-                 src="https://p1.hiclipart.com/preview/187/239/827/master-card-logo-card-icon-credit-card-icon-debit-card-icon-master-card-icon-line-meter-redm-png-clipart.jpg">
+                 src="/images/gopay.png">
                  <div class="desc-bank">
                    <h3>Pt Mojopahittour</h3>
                    <p>
@@ -176,20 +176,6 @@
                    </p>
                  </div>
                  <div class="clearfix"></div>
-               </div>
-               <div class="bank-item pb-3">
-                <img 
-                class="bank-img"
-                src="https://p1.hiclipart.com/preview/187/239/827/master-card-logo-card-icon-credit-card-icon-debit-card-icon-master-card-icon-line-meter-redm-png-clipart.jpg">
-                <div class="desc-bank">
-                  <h3>Pt Mojopahittour</h3>
-                  <p>
-                    1239432130
-                    <br/>
-                    Bank Started Cartert
-                  </p>
-                </div>
-                <div class="clearfix"></div>
                </div>
              </div>
           </div>

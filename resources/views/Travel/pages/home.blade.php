@@ -65,16 +65,15 @@
           <!-- batas -->
          @foreach ($data as $item)
             @php
-                 $urlAsli = $item->travel_galleries->first->image;
+                 $urlAsli = $item->travel_galleries->first()->image;
                  $remove = str_replace('C:\laragon\www\cobaLaravellatihan\public\imagesUpload\\', '', $urlAsli);
-                 $toJson = json_decode($remove,true);
-                 $vvv = $urlAsli;
+                 print_r($remove);
             @endphp
 
             <div class="col-sm-6 col-md-4 col-lg-3">
               <div 
               class="card-travel text-center d-flex flex-column" 
-              style="background-image:url('/imagesUpload/{{ $item->travel_galleries->count() ? 'ds' : '' }}')"
+              style="background-image:url('/imagesUpload/{{ $remove }}')"
               > 
                 <div class="travel-country">{{ $item->location }}</div>
                 <div class="travel-location">{{ $item->title }}</div>

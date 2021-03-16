@@ -54,7 +54,7 @@ class TravelPackageController extends Controller
         TravelPacage::create($data);
         $items = TravelPacage::all();
         return view('Travel.pages.admin.travelPackage.index',[
-            'items'=> $items
+            'data'=> $items
         ]);
        // echo"hallo";
 

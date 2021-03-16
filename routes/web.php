@@ -21,7 +21,9 @@ Route::get('/', function () {
 
 
 
-Route::get('/test','Travel\CobaTanpaReload@Coba');
+Route::get('/test',function(){
+    return view('Travel.pages.transactionNotif.unfinish');
+});
 
 
 
@@ -65,6 +67,12 @@ Route::prefix('Travel')->group(function ()
         return view('dashboard');
     })->name('dashboard');
 
+    //midtrans
+    Route::post('/midtrans/callback','Travel\MidtransController@notificationHandler');
+    Route::get('/midtrans/finish','Travel\MidtransController@finishRedirect');
+    Route::get('/midtrans/unfinish','Travel\MidtransController@unfinishRedirect');
+    Route::get('/midtrans/error','Travel\MidtransController@errorRedirect');
+    //mid
 
 });
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () { //bawaan ketiak install auth jetstream
