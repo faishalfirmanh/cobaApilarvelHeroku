@@ -106,30 +106,30 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
-
-    //
      $name = $request->input('name');
      $artcl = $request->input('article');
      $category = $request->input('categoryid');
      $jumlahInputKat = strlen($category);
     if ($request->hasFile('image') && $name !== null)
-      {
-        $request->validate([
-           'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-       ]);
-       $filename = time() . '.'.$request->image->extension();
-       $image = $request->file('image')->move(public_path('images'), $filename);
-      if($jumlahInputKat>1)
-        {
-          return response()->json([
-            "message" => "input hanya berupa angka 1-4",
-          ]);
-        }
-       $data = new Product();
+    {     
+        $request->validate(['image' => 'required|image',
+        ]);
+        $filename = time() . '.'.$request->image->extension();
+        $image = $request->file('image')->move(public_path('images'), $filename);
+        if($jumlahInputKat>1)
+          {
+            return response()->json([
+              "message" => "input hanya berupa angka 1-4",
+            ]);
+          }
+         $data = new Product();
          $data->name = $name;
          $data->article =$artcl;
          $data->categoryid = $category;
          $data->image = url('images') . '/' . $filename;
+         
+         $data->save();
+        
          if($data->save())
          {
            $res['value'] = "$data";
@@ -141,44 +141,41 @@ class ProductController extends Controller
          {
              return "failed save";
          }
-     }
-      else
-     {
-
-       $name = $request->input('name');
-       $artcl = $request->input('article');
-       $category = $request->input('categoryid');
-       $jumlahInputKat = strlen($category);
-       if($jumlahInputKat>1)
-         {
-           return response()->json([
-             "message" => "input hanya berupa angka 1-4",
-           ]);
-         }
-        $data = new Product();
-          $data->name = $name;
-          $data->article =$artcl;
-          $data->categoryid = $category;
-          $data->image = "empty";
-          if($data->save())
-          {
-            $res['value'] = "$data";
-            $res['message'] = "success";
-            return response()->json([
-              "message" => "succes save",
-              "validasi" => "tapi gambar kosong"
+    }
+    else
+    {  
+      $name = $request->input('name');
+      $artcl = $request->input('article');
+      $category = $request->input('categoryid');
+      $jumlahInputKat = strlen($category);
+      if($jumlahInputKat>1)
+        {
+          return response()->json([
+            "message" => "input hanya berupa angka 1-4",
           ]);
-          }
-          else
-          {
-              return "failed save";
-          }
-
-        return response()->json([
-          "message" => "succes save",
-          "validasi" => "tapi gambar kosong"
-      ]);
-     }
+        }
+      $data = new Product();
+        $data->name = $name;
+        $data->article =$artcl;
+        $data->categoryid = $category;
+        $data->image = "empty";
+        if($data->save())
+        {
+          $res['value'] = "$data";
+          $res['message'] = "success";
+          return response()->json([
+            "message" => "succes save",
+            "validasi" => "tapi gambar kosong"
+        ]);
+        }
+        else
+        {
+            return "failed save";
+        }
+       return response()->json([
+        "message" => "succes save",
+        "validasi" => "tapi gambar kosong"]);
+    }
 
 
 
@@ -254,22 +251,14 @@ class ProductController extends Controller
       if (is_null($prod)) {
         return response()->json('Data tidak ditemukan',404);
       }
-      // $data->image = url('images') . '/' . $filename;
       $tes = url('images') . '/' ;
       $imgNow = $prod->image; //ambil gmbar yang lama full url
       $nameImg = str_replace($tes,'',$imgNow);
-      $image_path = $tes . $nameImg;
-      if(File::exists($image_path))
-      {
-         File::delete($image_path);
-      }
-
+      $filename = public_path().'/images/' . $nameImg;
+      File::delete($filename);
       $prod->delete();
       return 'Sukses dihapus';
 
-      // print_r($nameImg);
-      // echo "<br>";
-      // print_r($imgNow);
     }
 
     public function updateNew(Request $request, $id)
